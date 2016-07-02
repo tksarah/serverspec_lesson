@@ -14,7 +14,7 @@
 * Serverspecホスト用、ターゲット用のDockerコンテナイメージが準備されている
 * リバースプロキシのDockerコンテナイメージが準備されている
 * roles/lesson1/files/lesson1_files/tools/setup.sh の HOSTADDR にホストのIPアドレスを入れる（ホストの準備によりPlaybookを実行した場合は自動的に入るが、本リポジトリを単体で利用する場合は Playbook 実行時に ip=XXX.XXX.XXX.XXX とそのホストのIPアドレスを渡してやる）
-* roles/{lesson1/files/dockerfile/create_proxy.sh の HOSTADDR にホストのIPアドレスを入れる（ホストの準備によりPlaybookを実行した場合は自動的に入るが、本リポジトリを単体で利用する場合は Playbook 実行時に ip=XXX.XXX.XXX.XXX とそのホストのIPアドレスを渡してやる）
+* roles/lesson1/files/dockerfile/create_proxy.sh の HOSTADDR にホストのIPアドレスを入れる（ホストの準備によりPlaybookを実行した場合は自動的に入るが、本リポジトリを単体で利用する場合は Playbook 実行時に ip=XXX.XXX.XXX.XXX とそのホストのIPアドレスを渡してやる）
 
 ## Details of this playbook
 Serverspec ハンズオンを行うための以下の準備を行うPlaybook
