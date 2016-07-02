@@ -1,26 +1,14 @@
 - block:
-    - name:  remove ansible target container for "{{ t1name }}"
+    - name:  remove serverspec target container for "{{ t1name }}"
       docker_container:
         name: "{{ t1name }}"
-        image: tksarah/lesson_ansible_target_pkged
+        image: "tksarah/lesson_serverspec_target"
         state: absent
 
-    - name: remove ansible host container for "{{ h1name }}"
+    - name: remove serverspec host container for "{{ h1name }}"
       docker_container:
         name: "{{ h1name }}"
-        image: "tksarah/lesson1_ansible_host"
-        state: absent
-
-    - name:  remove ansible target container for "{{ t2name }}"
-      docker_container:
-        name: "{{ t2name }}"
-        image: tksarah/lesson_ansible_target_pkged
-        state: absent
-
-    - name: remove ansible host container for "{{ h2name }}"
-      docker_container:
-        name: "{{ h2name }}"
-        image: "tksarah/lesson2_ansible_host"
+        image: "tksarah/lesson_serverspec_host"
         state: absent
 
     - name: Delete "{{ user }}" user

@@ -23,8 +23,6 @@
             name: "{{ hname }}"
             image: "tksarah/lesson_serverspec_host"
             state: started
-            volumes: 
-              - "/_test:/mnt:ro"
             command: "/bin/bash"
             links:
               - "{{ tname }}:web"

@@ -1,5 +1,4 @@
 - block:
-    - include: ready.yml
 
     - include: users.yml
       vars:
