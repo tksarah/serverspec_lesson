@@ -47,4 +47,5 @@ ansible-playbook -i hosts -e lesson=1 site.yml
 
 ```
 ansible-playbook -i hosts -e "lesson=1 ip=192.168.10.10" site.yml
+ansible-playbook -i hosts -e "lesson=1 ip=192.168.10.10" --vault-password-file=pass site.yml
 ```
