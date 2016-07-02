@@ -1,0 +1,46 @@
+- hosts: localhost
+  gather_facts: no
+
+  vars:
+    tname: "{{ user }}_l1_target"
+    hname: "{{ user }}_l1_host"
+    port: "{{ cport }}:80"
+    ops: "absent"
+
+  tasks:
+    - block:
+        - name: boot serverspec target container
+          docker_container:
+            name: "{{ tname }}"
+            image: "tksarah/lesson_serverspec_target"
+            detach: true
+            state: started
+            ports:
+              - "{{ port }}"
+
+        - name: boot serverspec host container
+          docker_container:
+            name: "{{ hname }}"
+            image: "tksarah/lesson_serverspec_host"
+            state: started
+            volumes: 
+              - "/_test:/mnt:ro"
+            command: "/bin/bash"
+            links:
+              - "{{ tname }}:web"
+            tty: true
+      tags: bootup
+
+    - block:
+        - name:  remove serverspec target container
+          docker_container:
+            name: "{{ tname }}"
+            image: "tksarah/lesson_serverspec_target"
+            state: "{{ ops }}"
+
+        - name: remove serverspec host container
+          docker_container:
+            name: "{{ hname }}"
+            image: "tksarah/lesson_serverspec_host"
+            state: "{{ ops }}"
+      tags: remove

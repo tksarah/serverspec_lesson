@@ -1,0 +1,19 @@
+- name: Setup Lesson for Serverspec Handson
+  hosts: localhost
+  gather_facts: no
+
+  pre_tasks:
+    - name: Pre task ... Set IP address
+      replace: dest={{ item }}
+        regexp='HOSTADDR|([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})'
+        replace="{{ ip }}"
+      with_items:
+        - "/root/serverspec_lesson/roles/lesson1/files/dockerfile/create_proxy.sh"
+        - "/root/serverspec_lesson/roles/lesson1/files/lesson1_files/tools/setup.sh"
+      when: ip is defined
+
+  roles: 
+    - { role: lesson1, when: "lesson == '1'" }
+    - { role: delete_only_dir, when: "lesson == 'del1'" }
+    - { role: clear, when: "lesson == 'clear'" }
+

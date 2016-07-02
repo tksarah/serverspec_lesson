@@ -1,0 +1,15 @@
+- block:
+    - include: ready.yml
+
+    - include: users.yml
+      vars:
+        user: "{{ item.name }}"
+        port: "{{ item.port }}"
+      with_items:
+        - "{{ group }}"
+    
+    - include: rproxy.yml
+
+  rescue:
+      - name: Rollback ... delete template files
+        file: path="/tmp/dockerfile" state=absent
